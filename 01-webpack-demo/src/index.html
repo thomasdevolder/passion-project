@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nadar</title>
+</head>
+
+<body>
+  <h1>360 demo</h1>
+  <div class="pano-container"></div>
+  <script>
+    const panorama = new PANOLENS.ImagePanorama('assets/img/pano.exr');
+    const viewer = new PANOLENS.Viewer({ container: document.querySelector(`.pano-container`) });
+    viewer.add(panorama);
+  </script>
+  <script src="/src/js/three.min.js"></script>
+  <script src="/src/js/panolens.min.js"></script>
+ <!-- <script src="/src/js/script.js"></script>-->
+</body>
+
+</html>

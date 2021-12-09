@@ -120,7 +120,6 @@ const Home = () => {
 
     return(
         <div className={styles.container}>
-            <nav className={styles.overlays}>
                 <div ref={el => {nav = el}} className={styles.nav}>
                     <Link to="./start">
                         <svg ref={el => {logo = el}} className={styles.logo} xmlns="http://www.w3.org/2000/svg" width="70" height="105" viewBox="0 0 70 105">
@@ -155,7 +154,7 @@ const Home = () => {
                     <a className={styles.organisation} target="_blank" href="https://www.voldercompany.be">A VOLDER EVENT</a>
                     <p className={styles.accept}>Accept<br/>Invite</p>
                 </div>
-            </nav>
+            
             <Routes>
             <Route path="/start" element={<Start homeImage={image}/>} />
             <Route path="/camping" element={<Camping/>} />

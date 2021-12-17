@@ -8,7 +8,7 @@ const Start = ({homeImage}) => {
         <main className={styles.homeMain}>
                 <div className={styles.homeText}>
                     <h1 className={styles.homeTitle}>
-                        Hey,<br/> your invited <br/> for the <br/> party<br/> of your<br/> life
+                        Hey,<br/> you're invited <br/> for the <br/> party<br/> of your<br/> life
                     </h1>
                     <ul className={styles.homeList}>
                         <li className={styles.homeListItem, styles.homeListTitle}>Sweet 21 volder</li>

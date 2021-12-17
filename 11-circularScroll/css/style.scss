@@ -1,0 +1,387 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body{
+    background-color:#828282
+}
+@font-face {
+    font-family: 'Accidental presidency';
+    src: url(../fonts/accid___.ttf);
+  }
+ :root{
+    --speed: 2s;
+    --ap:'Accidental presidency';
+    --r: ''Roboto', sans-serif;'
+}
+
+
+/* Stick Man Animation */
+#front-arm{
+    animation: fa-move var(--speed) ease infinite;
+    transform-box:fill-box;
+    transform-origin: start;
+}
+@keyframes fa-move{
+    0%{
+        transform:rotateX(0deg) rotateY(0deg) translateY(2px) ;
+    }
+    50%{
+        transform:rotateX(0deg) rotateY(0deg) rotateZ(40deg) translateY(0px) translateX(5px) ;
+    }
+    100%{
+        transform:rotateX(0deg) rotateY(0deg) translateY(2px) ;
+    }
+}
+
+
+#back-arm{
+    animation: ba-move var(--speed) ease infinite;
+    transform-box:fill-box;
+    transform-origin: start;
+}
+@keyframes ba-move{
+    0%{
+        transform:rotateX(0deg) rotateY(0deg) ;
+    }
+    50%{
+        transform:rotateX(0deg) rotateY(0deg) rotateZ(-40deg) translateY(10px) translateX(-5px) ;
+    }
+    100%{
+        transform:rotateX(0deg) rotateY(0deg) ;
+    }
+}
+
+
+
+#front-leg{
+    animation: fl-move var(--speed) ease-in-out infinite ;
+    transform-box:fill-box;
+    transform-origin:start
+}
+@keyframes fl-move{
+    0%{
+        transform:rotateX(0deg) rotateY(0deg) ;
+    }
+    50%{
+        transform:rotateX(0deg) rotateY(0deg) rotateZ(-25deg) translateY(3px) translateX(-8px) ;
+    }
+    100%{
+        transform:rotateX(0deg) rotateY(0deg);
+    }
+}
+
+#back-leg{
+    animation: bl-move var(--speed) ease-in-out infinite ;
+    transform-box:fill-box;
+    transform-origin:start
+}
+@keyframes bl-move{
+    0%{
+        transform:rotateX(0deg) rotateY(0deg) ;
+    }
+    50%{
+        transform:rotateX(0deg) rotateY(0deg) rotateZ(25deg) translateY(-10px) translateX(8px) ;
+    }
+    100%{
+        transform:rotateX(0deg) rotateY(0deg);
+    }
+}
+
+/* Stick Man Animation End*/
+
+
+.preview-section{
+    /*width:100vw;*/
+    height:100vh;
+    position: relative;
+}
+.preview-section2{
+    /*width:100vw;*/
+    height:100vh;
+    position: relative;
+}
+
+.hutch-world-circle{   
+    text-align: center;
+    position: relative;
+}
+.scroll-down-btn-wrap{
+    display:block;
+    position:absolute;
+    bottom:5%;
+    right:5%;
+}
+.scroll-down-btn{
+    display:flex;
+}
+.arrow-down{
+    animation: scroll-arrow 2s ease-in-out infinite alternate;
+    color:#fff;
+    font-size:25px;
+    padding:0px 10px;
+}
+@keyframes scroll-arrow{
+   0%{
+       transform: translateY(0px);
+   } 
+   50%{
+    transform: translateY(5px);
+   }
+   100%{
+    transform: translateY(0px);
+   }
+   
+}
+.scroll-down-btn p{
+    color:#fff;
+    font-size:24px;
+    font-weight:400;
+    font-family: var(--ap)
+
+}
+
+.stickmanonglobe2{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translateX(-50%) translateY(-50%);
+
+}
+.stickmanglobeinner{
+    position:relative
+}
+.stickman{
+    position:absolute;
+    top:-60px;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+
+.circular-nav2{
+    height:700px;
+    width:700px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    border-radius:50%;
+    position:relative;
+}
+
+.circular-nav-inner .navigation-label{
+    position:absolute;
+    font-family:var(--ap);
+    font-weight:400;
+    font-size:30px;
+    color:#fff;
+
+}
+
+ .circular-nav-inner .navigation-label:nth-of-type(1){
+    top:10px;
+    left:50%;
+     transform:translateX(-50%);
+
+} 
+.circular-nav-inner .navigation-label:nth-of-type(2){
+    top:25%;
+    left:45px;
+    transform:translateY(-25%) rotate(-60deg);
+} 
+
+.circular-nav-inner .navigation-label:nth-of-type(3){
+    bottom:25%;
+    left:35px;
+    transform:translateY(-25%) rotate(-120deg);
+}
+
+    
+
+.circular-nav-inner .navigation-label:nth-of-type(4){
+    bottom:10px;
+    left:50%;
+    transform:translateX(-50%) scale(-1);
+
+}
+.circular-nav-inner .navigation-label:nth-of-type(5){
+    bottom:25%;
+    right:35px;
+    transform:translateY(-25%) rotate(120deg);
+
+}
+.circular-nav-inner .navigation-label:nth-of-type(6){
+    top:25%;
+    right:45px;
+    transform:translateY(-25%) rotate(60deg) ;
+
+} 
+
+.globe2{
+    width:400px;
+    /*height:400px;*/
+    z-index: 10;
+    cursor:pointer;
+}
+.navigation-label a{
+    color:#fff;
+    text-decoration: none;
+    transition: all .3s ease;
+}
+.navigation-label a:hover{
+    text-decoration: underline; 
+/*     font-size: 150%; */
+	/*-webkit-transform: scale(1.2);*/
+     transform:scale(1.5);
+    transform-origin: center;
+    transform-box:fill-box;	
+}
+
+/* responsive css */
+    @media only screen and (max-width:1400px){
+        .circular-nav2{
+         height:700px;
+         width:700px;
+        }
+        .globe2{
+         width:350px;
+         height:350px;
+        }
+    }    @media only screen and (max-width:786px){
+
+    }
+    @media only screen and (max-width:567px){
+       .circular-nav-outer{
+           transform:scale(0.5);
+           transform-origin: center center;
+           transform-box:fill-box;
+       }
+       .scroll-down-btn p {
+           font-size:16px;
+       }
+       .scroll-down-btn i{
+           font-size:16px;
+       }
+    .circular-nav2{
+         height:400px;
+         width:400px;
+        }
+        .globe2{
+         width:175px;
+         /*height:350px;*/
+        }
+    }
+
+    @media only screen and (max-width:375px){
+        .circular-nav-outer{
+            transform:scale(0.45);
+            transform-origin: center center;
+            transform-box:fill-box;
+        }
+     }
+/* responsive css end */
+
+
+.right-section-scroll{
+    height: 100vh;
+    overflow-y: scroll;
+}
+.right-section-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.left-section-scroll{
+    /*height: 100vh;*/
+    /*position: absolute;*/
+    overflow-y: scroll;
+}
+.left-section-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+body{overflow-x: hidden}
+
+
+
+/* review page start */
+.review-page{
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+
+
+// *** //
+.review-tab{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    //height:100vh;
+    //overflow-y: scroll;
+    overflow: hidden; 
+    padding: 3% 3%;
+    text-align: -webkit-center;
+}
+
+//.review-tab::-webkit-scrollbar{
+//    width:0px;
+//}
+
+
+.review-tab .heading{
+    color:#fff;
+    font-family: var(--ap);
+    font-size:55px;
+    margin:0;
+    text-transform:uppercase;
+
+
+}
+.myDiv {
+  border: 5px outset red;
+  background-color: lightblue;    
+  text-align: center;
+}
+/* review page end */
+
+
+
+// *** //
+.subpage-stickman{
+    height:100vh;
+    overflow:scroll;
+    overflow-x: hidden;
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
+}
+
+//.subpage-stickman::-webkit-scrollbar{
+//    width:0px;
+//}
+
+.page-top{
+    overflow:hidden;
+}
+.subpage-stickman .circular-nav-outer {
+    transform:scale(0.75);
+}
+
+
+
+// *** //
+.pin-wrap {
+    height:100vh;
+    overflow:hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.review-tab.left {
+  padding: 0 !important;
+}
+// *** //

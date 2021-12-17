@@ -55,3 +55,15 @@
     background-color: #0D0D0D;
     color: white;
 }
+
+.curtain {
+    width: 100vw;
+    height: 100vh; 
+    background-color: white;
+    position: absolute;
+    font-size: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0D0D0D; 
+}

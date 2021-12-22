@@ -40,7 +40,7 @@ const Photographer = () => {
         <main className={styles.container}>
             <h2 className={styles.title}>FOTOGRAAF / VIDEOGRAAF</h2>
             <article className={styles.visualizer}>
-                <div className={styles.switch}>
+                <div className={styles.switch, styles[visualizer]}>
                     <p className={styles.switchLeft} onClick={changeContentPhoto}>videograaf</p>
                     <p className={styles.switchMiddle}>|</p>
                     <p className={styles.switchRight} onClick={changeContentPhoto}>fotograaf</p>

@@ -9,178 +9,587 @@ import { STATE } from 'three-stdlib'
 import { useFrame } from '@react-three/fiber'
 
 export default function Model({ ...props }) {
+  const group = useRef()
+  
+
   const scroll = useScroll()
   useFrame((state, delta) => {
-    const offset = 1 - scroll.offset; 
-    //console.log(offset); 
-    state.camera.position.set(offset * -5000, 200 , offset * -2000)
-    if(offset < .500) {
-      state.camera.lookAt(2000, 400, 3000)
-    } else { 
-      state.camera.lookAt(2000, 400, -3000)
+    const offset = .5 - scroll.offset; 
+    let sideOffset
+    if(offset > 0) {
+      sideOffset = offset - .5
+    } else if (offset < 0) {
+      sideOffset = - Math.abs(offset + .3)
+    }
+
+    console.log(sideOffset, offset)
+    state.camera.position.set(-offset * -7000, 300 , sideOffset * 1500) 
+    if(offset > .32) {
+      state.camera.lookAt(0, 400, 0)
+    } else if (offset < .33 && offset > .22) { 
+      state.camera.lookAt(2000, 400, -1000)
+    } else if (offset < .22 && offset > .08) {
+      state.camera.lookAt(0, 400, -1500)
+    } else if (offset <.08) {
+      state.camera.lookAt(-3000, 0, -800)
     }
     
   })
-  const group = useRef()
-
-  useEffect(() => {
-    console.log(group)
-  },[])
 
   const { nodes, materials } = useGLTF(zaalModel)
+
   return (
     <group ref={group} {...props} dispose={null}>
-      <group position={[-896.13, 154.92, -30.97]}>
-        <group position={[896.13, -154.92, 30.97]}>
-          <group position={[234.23, 193.33, -246.37]} rotation={[0, -1.57, 0]}>
-            <mesh geometry={nodes.Cube13_1.geometry} material={nodes.Cube13_1.material} position={[0, 6.67, 2918.54]} />
-            <mesh geometry={nodes.Cube2_3.geometry} material={nodes.Cube2_3.material} position={[0, -3.33, -1927.1]} />
+      <group position={[-834.87, 195.1, -357.45]}>
+        <group position={[834.87, -195.1, 357.45]}>
+          <mesh
+            geometry={nodes.Cube6.geometry}
+            material={nodes.Cube6.material}
+            position={[0, 251.01, 300]}
+            rotation={[0, 1.57, 0]}
+          />
+          <mesh
+            geometry={nodes.Cube37.geometry}
+            material={nodes.Cube37.material}
+            position={[-879.6, 200, 274.09]}
+            rotation={[0, 1.57, 0]}
+          />
+        </group>
+        <group position={[3598.51, 93.36, -831.91]}>
+          <mesh
+            geometry={nodes.Cylinder10_1.geometry}
+            material={nodes.Cylinder10_1.material}
+            position={[1.12, 97.2, -104.74]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            geometry={nodes.Cube34_1.geometry}
+            material={nodes.Cube34_1.material}
+            position={[-1.12, -97.2, 104.74]}
+            rotation={[Math.PI / 2, 0, 0]}
+          />
+        </group>
+        <group position={[3353.73, 93.36, -831.91]}>
+          <mesh
+            geometry={nodes.Cylinder10_2.geometry}
+            material={nodes.Cylinder10_2.material}
+            position={[7.81, 97.2, -104.74]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            geometry={nodes.Cube34_2.geometry}
+            material={nodes.Cube34_2.material}
+            position={[5.57, -97.2, 104.74]}
+            rotation={[Math.PI / 2, 0, 0]}
+          />
+        </group>
+        <group position={[3128.73, 93.36, -831.91]}>
+          <mesh
+            geometry={nodes.Cylinder10_3.geometry}
+            material={nodes.Cylinder10_3.material}
+            position={[1.12, 97.2, -104.74]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          />
+          <mesh
+            geometry={nodes.Cube34_3.geometry}
+            material={nodes.Cube34_3.material}
+            position={[-1.12, -97.2, 104.74]}
+            rotation={[Math.PI / 2, 0, 0]}
+          />
+        </group>
+        <group position={[385.97, 11.74, 976.75]}>
+          <mesh
+            geometry={nodes.Cylinder13.geometry}
+            material={nodes.Cylinder13.material}
+            position={[4.48, -18.76, 33.71]}
+          />
+          <mesh
+            geometry={nodes.Cylinder12.geometry}
+            material={nodes.Cylinder12.material}
+            position={[4.48, -18.76, -35.9]}
+          />
+          <mesh
+            geometry={nodes.Cylinder11_1.geometry}
+            material={nodes.Cylinder11_1.material}
+            position={[-13.44, 32.07, 1.09]}
+            rotation={[0, 0, 1.1]}
+          />
+          <mesh
+            geometry={nodes.Cylinder10_4.geometry}
+            material={nodes.Cylinder10_4.material}
+            position={[4.48, 5.44, 1.09]}
+          />
+        </group>
+        <group position={[385.97, 11.74, 1271.75]}>
+          <mesh
+            geometry={nodes.Cylinder13_1.geometry}
+            material={nodes.Cylinder13_1.material}
+            position={[4.48, -18.76, 33.71]}
+          />
+          <mesh
+            geometry={nodes.Cylinder12_1.geometry}
+            material={nodes.Cylinder12_1.material}
+            position={[4.48, -18.76, -35.9]}
+          />
+          <mesh
+            geometry={nodes.Cylinder11_2.geometry}
+            material={nodes.Cylinder11_2.material}
+            position={[-13.44, 32.07, 1.09]}
+            rotation={[0, 0, 1.1]}
+          />
+          <mesh
+            geometry={nodes.Cylinder10_5.geometry}
+            material={nodes.Cylinder10_5.material}
+            position={[4.48, 5.44, 1.09]}
+          />
+        </group>
+        <group position={[385.97, 11.74, 1581.75]}>
+          <mesh
+            geometry={nodes.Cylinder13_2.geometry}
+            material={nodes.Cylinder13_2.material}
+            position={[4.48, -18.76, 33.71]}
+          />
+          <mesh
+            geometry={nodes.Cylinder12_2.geometry}
+            material={nodes.Cylinder12_2.material}
+            position={[4.48, -18.76, -35.9]}
+          />
+          <mesh
+            geometry={nodes.Cylinder11_3.geometry}
+            material={nodes.Cylinder11_3.material}
+            position={[-13.44, 32.07, 1.09]}
+            rotation={[0, 0, 1.1]}
+          />
+          <mesh
+            geometry={nodes.Cylinder10_6.geometry}
+            material={nodes.Cylinder10_6.material}
+            position={[4.48, 5.44, 1.09]}
+          />
+        </group>
+        <group position={[834.87, -195.1, 357.45]}>
+          <group position={[-514.23, 230.15, 923.24]} rotation={[0, 0, -0.17]}>
+            <mesh geometry={nodes.Cube36_1.geometry} material={nodes.Cube36_1.material} position={[0, 0, -292.74]} />
+            <mesh geometry={nodes.Cube35_1.geometry} material={nodes.Cube35_1.material} position={[0, 0, -10.74]} />
+            <mesh geometry={nodes.Cube34_4.geometry} material={nodes.Cube34_4.material} position={[0, 0, 303.48]} />
+          </group>
+          <mesh
+            geometry={nodes.Cube33_1.geometry}
+            material={nodes.Cube33_1.material}
+            position={[-514.23, 163.56, 913.68]}
+          />
+        </group>
+        <group position={[-831.54, 2.36, 1091.59]} rotation={[-Math.PI / 2, 0, 1.58]} scale={2.54}>
+          <mesh
+            geometry={nodes.Bowl.geometry}
+            material={nodes.Bowl.material}
+            position={[0.07, 2.65, -58.66]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Water_Tube.geometry}
+            material={nodes.Water_Tube.material}
+            position={[-8.74, 37.25, -22.94]}
+            rotation={[Math.PI / 2, -1.57, 0]}
+          />
+          <mesh
+            geometry={nodes.Seat.geometry}
+            material={nodes.Seat.material}
+            position={[-0.3, 126.96, -57.4]}
+            rotation={[0.01, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Flush_Button.geometry}
+            material={nodes.Flush_Button.material}
+            position={[-0.43, 31.3, 32.24]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[1.93, 2.66, 5.02]}
+          />
+          <mesh
+            geometry={nodes.Tank_cover.geometry}
+            material={nodes.Tank_cover.material}
+            position={[-0.43, 31.3, 32.24]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[1.93, 2.66, 5.02]}
+          />
+          <mesh
+            geometry={nodes.Lid.geometry}
+            material={nodes.Lid.material}
+            position={[-0.35, -85.18, -109.66]}
+            rotation={[-1.62, 0, Math.PI / 2]}
+            scale={[4.56, 2.23, 5.24]}
+          />
+          <mesh
+            geometry={nodes.Hinges.geometry}
+            material={nodes.Hinges.material}
+            position={[0.07, 2.65, -58.66]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Tank.geometry}
+            material={nodes.Tank.material}
+            position={[-0.21, -4.59, -1.73]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[1.88, 2.64, 2.67]}
+          />
+          <group position={[0.07, 2.65, -58.62]} rotation={[0, 0, Math.PI / 2]} scale={[4.51, 2.21, 3.24]}>
             <mesh
-              geometry={nodes.Cube11_1.geometry}
-              material={nodes.Cube11_1.material}
+              geometry={nodes['Drainage_Tube-Plastic_Grey'].geometry}
+              material={nodes['Drainage_Tube-Plastic_Grey'].material}
+            />
+            <mesh
+              geometry={nodes['Drainage_Tube-Ceramic'].geometry}
+              material={nodes['Drainage_Tube-Ceramic'].material}
+            />
+          </group>
+          <mesh
+            geometry={nodes.Bolt_Caps.geometry}
+            material={nodes.Bolt_Caps.material}
+            position={[0.07, 2.65, -58.62]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Water.geometry}
+            material={nodes.Water.material}
+            position={[0.06, -4.89, -36.11]}
+            scale={[0.67, 0.67, 0.67]}
+          />
+          <mesh
+            geometry={nodes.Valve.geometry}
+            material={nodes.Valve.material}
+            position={[-27.13, -55.85, -38.28]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+            scale={1.43}
+          />
+        </group>
+        <group position={[-831.55, 2.36, 787.85]} rotation={[-Math.PI / 2, 0, 1.58]} scale={2.54}>
+          <mesh
+            geometry={nodes.Bowl_1.geometry}
+            material={nodes.Bowl_1.material}
+            position={[0.07, 2.65, -58.66]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Water_Tube_1.geometry}
+            material={nodes.Water_Tube_1.material}
+            position={[-8.74, 37.25, -22.94]}
+            rotation={[Math.PI / 2, -1.57, 0]}
+          />
+          <mesh
+            geometry={nodes.Seat_1.geometry}
+            material={nodes.Seat_1.material}
+            position={[-0.3, 126.96, -57.4]}
+            rotation={[0.01, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Flush_Button_1.geometry}
+            material={nodes.Flush_Button_1.material}
+            position={[-0.43, 31.3, 32.24]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[1.93, 2.66, 5.02]}
+          />
+          <mesh
+            geometry={nodes.Tank_cover_1.geometry}
+            material={nodes.Tank_cover_1.material}
+            position={[-0.43, 31.3, 32.24]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[1.93, 2.66, 5.02]}
+          />
+          <mesh
+            geometry={nodes.Lid_1.geometry}
+            material={nodes.Lid_1.material}
+            position={[-0.35, -85.18, -109.66]}
+            rotation={[-1.62, 0, Math.PI / 2]}
+            scale={[4.56, 2.23, 5.24]}
+          />
+          <mesh
+            geometry={nodes.Hinges_1.geometry}
+            material={nodes.Hinges_1.material}
+            position={[0.07, 2.65, -58.66]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Tank_1.geometry}
+            material={nodes.Tank_1.material}
+            position={[-0.21, -4.59, -1.73]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[1.88, 2.64, 2.67]}
+          />
+          <group position={[0.07, 2.65, -58.62]} rotation={[0, 0, Math.PI / 2]} scale={[4.51, 2.21, 3.24]}>
+            <mesh
+              geometry={nodes['Drainage_Tube-Plastic_Grey_1'].geometry}
+              material={nodes['Drainage_Tube-Plastic_Grey_1'].material}
+            />
+            <mesh
+              geometry={nodes['Drainage_Tube-Ceramic_1'].geometry}
+              material={nodes['Drainage_Tube-Ceramic_1'].material}
+            />
+          </group>
+          <mesh
+            geometry={nodes.Bolt_Caps_1.geometry}
+            material={nodes.Bolt_Caps_1.material}
+            position={[0.07, 2.65, -58.62]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Water_1.geometry}
+            material={nodes.Water_1.material}
+            position={[0.06, -4.89, -36.11]}
+            scale={[0.67, 0.67, 0.67]}
+          />
+          <mesh
+            geometry={nodes.Valve_1.geometry}
+            material={nodes.Valve_1.material}
+            position={[-27.13, -55.85, -38.28]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+            scale={1.43}
+          />
+        </group>
+        <group position={[-831.54, 2.36, 1686.17]} rotation={[-Math.PI / 2, 0, 1.58]} scale={2.54}>
+          <mesh
+            geometry={nodes.Bowl_2.geometry}
+            material={nodes.Bowl_2.material}
+            position={[0.07, 2.65, -58.66]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Water_Tube_2.geometry}
+            material={nodes.Water_Tube_2.material}
+            position={[-8.74, 37.25, -22.94]}
+            rotation={[Math.PI / 2, -1.57, 0]}
+          />
+          <mesh
+            geometry={nodes.Seat_2.geometry}
+            material={nodes.Seat_2.material}
+            position={[-0.3, 126.96, -57.4]}
+            rotation={[0.01, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Flush_Button_2.geometry}
+            material={nodes.Flush_Button_2.material}
+            position={[-0.43, 31.3, 32.24]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[1.93, 2.66, 5.02]}
+          />
+          <mesh
+            geometry={nodes.Tank_cover_2.geometry}
+            material={nodes.Tank_cover_2.material}
+            position={[-0.43, 31.3, 32.24]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[1.93, 2.66, 5.02]}
+          />
+          <mesh
+            geometry={nodes.Lid_2.geometry}
+            material={nodes.Lid_2.material}
+            position={[-0.35, -85.18, -109.66]}
+            rotation={[-1.62, 0, Math.PI / 2]}
+            scale={[4.56, 2.23, 5.24]}
+          />
+          <mesh
+            geometry={nodes.Hinges_2.geometry}
+            material={nodes.Hinges_2.material}
+            position={[0.07, 2.65, -58.66]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Tank_2.geometry}
+            material={nodes.Tank_2.material}
+            position={[-0.21, -4.59, -1.73]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[1.88, 2.64, 2.67]}
+          />
+          <group position={[0.07, 2.65, -58.62]} rotation={[0, 0, Math.PI / 2]} scale={[4.51, 2.21, 3.24]}>
+            <mesh
+              geometry={nodes['Drainage_Tube-Plastic_Grey_2'].geometry}
+              material={nodes['Drainage_Tube-Plastic_Grey_2'].material}
+            />
+            <mesh
+              geometry={nodes['Drainage_Tube-Ceramic_2'].geometry}
+              material={nodes['Drainage_Tube-Ceramic_2'].material}
+            />
+          </group>
+          <mesh
+            geometry={nodes.Bolt_Caps_2.geometry}
+            material={nodes.Bolt_Caps_2.material}
+            position={[0.07, 2.65, -58.62]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Water_2.geometry}
+            material={nodes.Water_2.material}
+            position={[0.06, -4.89, -36.11]}
+            scale={[0.67, 0.67, 0.67]}
+          />
+          <mesh
+            geometry={nodes.Valve_2.geometry}
+            material={nodes.Valve_2.material}
+            position={[-27.13, -55.85, -38.28]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+            scale={1.43}
+          />
+        </group>
+        <group position={[-831.55, 2.36, 1354.36]} rotation={[-Math.PI / 2, 0, 1.58]} scale={2.54}>
+          <mesh
+            geometry={nodes.Bowl_3.geometry}
+            material={nodes.Bowl_3.material}
+            position={[0.07, 2.65, -58.66]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Water_Tube_3.geometry}
+            material={nodes.Water_Tube_3.material}
+            position={[-8.74, 37.25, -22.94]}
+            rotation={[Math.PI / 2, -1.57, 0]}
+          />
+          <mesh
+            geometry={nodes.Seat_3.geometry}
+            material={nodes.Seat_3.material}
+            position={[-0.3, 126.96, -57.4]}
+            rotation={[0.01, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Flush_Button_3.geometry}
+            material={nodes.Flush_Button_3.material}
+            position={[-0.43, 31.3, 32.24]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[1.93, 2.66, 5.02]}
+          />
+          <mesh
+            geometry={nodes.Tank_cover_3.geometry}
+            material={nodes.Tank_cover_3.material}
+            position={[-0.43, 31.3, 32.24]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[1.93, 2.66, 5.02]}
+          />
+          <mesh
+            geometry={nodes.Lid_3.geometry}
+            material={nodes.Lid_3.material}
+            position={[-0.35, -85.18, -109.66]}
+            rotation={[-1.62, 0, Math.PI / 2]}
+            scale={[4.56, 2.23, 5.24]}
+          />
+          <mesh
+            geometry={nodes.Hinges_3.geometry}
+            material={nodes.Hinges_3.material}
+            position={[0.07, 2.65, -58.66]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Tank_3.geometry}
+            material={nodes.Tank_3.material}
+            position={[-0.21, -4.59, -1.73]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[1.88, 2.64, 2.67]}
+          />
+          <group position={[0.07, 2.65, -58.62]} rotation={[0, 0, Math.PI / 2]} scale={[4.51, 2.21, 3.24]}>
+            <mesh
+              geometry={nodes['Drainage_Tube-Plastic_Grey_3'].geometry}
+              material={nodes['Drainage_Tube-Plastic_Grey_3'].material}
+            />
+            <mesh
+              geometry={nodes['Drainage_Tube-Ceramic_3'].geometry}
+              material={nodes['Drainage_Tube-Ceramic_3'].material}
+            />
+          </group>
+          <mesh
+            geometry={nodes.Bolt_Caps_3.geometry}
+            material={nodes.Bolt_Caps_3.material}
+            position={[0.07, 2.65, -58.62]}
+            rotation={[0, 0, Math.PI / 2]}
+            scale={[4.51, 2.21, 3.24]}
+          />
+          <mesh
+            geometry={nodes.Water_3.geometry}
+            material={nodes.Water_3.material}
+            position={[0.06, -4.89, -36.11]}
+            scale={[0.67, 0.67, 0.67]}
+          />
+          <mesh
+            geometry={nodes.Valve_3.geometry}
+            material={nodes.Valve_3.material}
+            position={[-27.13, -55.85, -38.28]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+            scale={1.43}
+          />
+        </group>
+        <group position={[834.87, -195.1, 357.45]}>
+          <mesh
+            geometry={nodes.Cube5_1.geometry}
+            material={nodes.Cube5_1.material}
+            position={[500, 250.73, -1439.36]}
+            rotation={[Math.PI / 2, Math.PI / 2, 0]}
+          />
+          <mesh
+            geometry={nodes.Cube20_1.geometry}
+            material={nodes.Cube20_1.material}
+            position={[469.6, 129.07, -1439.36]}
+            rotation={[Math.PI / 2, Math.PI / 2, 0]}
+          />
+        </group>
+        <group position={[993.87, 121.78, -1073.71]} rotation={[Math.PI / 2, Math.PI / 2, 0]}>
+          <mesh geometry={nodes.Cube21_1.geometry} material={nodes.Cube21_1.material} position={[0, 2.74, 19.85]} />
+          <mesh geometry={nodes.Cube20_2.geometry} material={nodes.Cube20_2.material} position={[0, -2.74, -19.85]} />
+        </group>
+        <group position={[1174.94, 121.78, -1073.71]} rotation={[Math.PI / 2, Math.PI / 2, 0]}>
+          <mesh geometry={nodes.Cube21_2.geometry} material={nodes.Cube21_2.material} position={[0, 2.74, 19.85]} />
+          <mesh geometry={nodes.Cube20_3.geometry} material={nodes.Cube20_3.material} position={[0, -2.74, -19.85]} />
+        </group>
+        <group position={[1742.26, 121.78, -1073.71]} rotation={[Math.PI / 2, Math.PI / 2, 0]}>
+          <mesh geometry={nodes.Cube21_3.geometry} material={nodes.Cube21_3.material} position={[0, 2.74, 19.85]} />
+          <mesh geometry={nodes.Cube20_4.geometry} material={nodes.Cube20_4.material} position={[0, -2.74, -19.85]} />
+        </group>
+        <group position={[1549.71, 121.78, -1073.71]} rotation={[Math.PI / 2, Math.PI / 2, 0]}>
+          <mesh geometry={nodes.Cube21_4.geometry} material={nodes.Cube21_4.material} position={[0, 2.74, 19.85]} />
+          <mesh geometry={nodes.Cube20_5.geometry} material={nodes.Cube20_5.material} position={[0, -2.74, -19.85]} />
+        </group>
+        <group position={[1354.71, 121.78, -1073.71]} rotation={[Math.PI / 2, Math.PI / 2, 0]}>
+          <mesh geometry={nodes.Cube21_5.geometry} material={nodes.Cube21_5.material} position={[0, 2.74, 19.85]} />
+          <mesh geometry={nodes.Cube20_6.geometry} material={nodes.Cube20_6.material} position={[0, -2.74, -19.85]} />
+        </group>
+        <group position={[834.87, -195.1, 357.45]}>
+          <group position={[234.23, 193.33, -246.37]} rotation={[0, -1.57, 0]}>
+            <mesh geometry={nodes.Cube13_2.geometry} material={nodes.Cube13_2.material} position={[0, 6.67, 2918.54]} />
+            <mesh geometry={nodes.Cube2_4.geometry} material={nodes.Cube2_4.material} position={[0, -3.33, -1927.1]} />
+            <mesh
+              geometry={nodes.Cube11_2.geometry}
+              material={nodes.Cube11_2.material}
               position={[0, -3.33, -991.43]}
             />
           </group>
           <mesh
-            geometry={nodes.Cube5.geometry}
-            material={nodes.Cube5.material}
+            geometry={nodes.Cube5_2.geometry}
+            material={nodes.Cube5_2.material}
             position={[0, 251.01, -300]}
             rotation={[0, 1.57, 0]}
           />
         </group>
-        <group position={[891, -146.26, 32.7]} rotation={[0, -0.46, 0]}>
-          <group position={[-2.37, -5.01, -4.03]} rotation={[0, -0.01, 0]}>
-            <mesh
-              geometry={nodes['Tube_3_2-Glossy-Black'].geometry}
-              material={nodes['Tube_3_2-Glossy-Black'].material}
-            />
-            <mesh
-              geometry={nodes['Tube_3_2-Glossy-White'].geometry}
-              material={nodes['Tube_3_2-Glossy-White'].material}
-            />
-          </group>
-          <mesh geometry={nodes.Tube_7.geometry} material={nodes.Tube_7.material} position={[-9.68, -2.74, -6.35]} />
-          <mesh geometry={nodes.Tube_6.geometry} material={nodes.Tube_6.material} position={[3.89, -2.77, 0.59]} />
-          <mesh geometry={nodes.Tube_5.geometry} material={nodes.Tube_5.material} position={[3.89, -2.77, 0.59]} />
-          <mesh geometry={nodes.Tube_4.geometry} material={nodes.Tube_4.material} position={[3.89, 4.2, 0.59]} />
+        <group position={[834.87, -195.1, 357.45]}>
           <mesh
-            geometry={nodes.Cylinder_1.geometry}
-            material={nodes.Cylinder_1.material}
-            position={[-9.68, 0.53, -6.35]}
-          />
-          <mesh geometry={nodes.Tube_6_2.geometry} material={nodes.Tube_6_2.material} position={[-9.68, 4.18, -6.35]} />
-          <mesh geometry={nodes.Tube_2.geometry} material={nodes.Tube_2.material} position={[3.89, -1.02, 0.59]} />
-          <mesh geometry={nodes.Tube_1.geometry} material={nodes.Tube_1.material} position={[3.89, 2.11, 0.59]} />
-          <mesh geometry={nodes.Tube_1_2.geometry} material={nodes.Tube_1_2.material} position={[3.89, 0.52, 0.59]} />
-          <mesh geometry={nodes.Cylinder.geometry} material={nodes.Cylinder.material} position={[3.89, 0.53, 0.59]} />
-          <mesh geometry={nodes.Tube_3.geometry} material={nodes.Tube_3.material} position={[3.89, 2.11, 2.69]} />
-          <mesh geometry={nodes.Tube_2_2.geometry} material={nodes.Tube_2_2.material} position={[3.89, 0.51, 2.69]} />
-          <mesh geometry={nodes.Tube_1_3.geometry} material={nodes.Tube_1_3.material} position={[3.89, -1.02, 2.69]} />
-          <mesh geometry={nodes.Loft_2.geometry} material={nodes.Loft_2.material} position={[4.16, -0.03, 5.15]} />
-          <mesh geometry={nodes.Tube.geometry} material={nodes.Tube.material} position={[-5.84, 4.34, 2.87]} />
-          <mesh geometry={nodes.Tube_2_3.geometry} material={nodes.Tube_2_3.material} position={[-5.84, -3.66, 2.87]} />
-        </group>
-        <group position={[1093.85, 158.24, -1051.14]} rotation={[-3.09, -1.45, -3.07]}>
-          <group position={[-104.31, -208.76, -481.57]} rotation={[0, -0.01, 0]}>
-            <mesh
-              geometry={nodes['Tube_3_2-Glossy-Black_1'].geometry}
-              material={nodes['Tube_3_2-Glossy-Black_1'].material}
-            />
-            <mesh
-              geometry={nodes['Tube_3_2-Glossy-White_1'].geometry}
-              material={nodes['Tube_3_2-Glossy-White_1'].material}
-            />
-          </group>
-          <mesh
-            geometry={nodes.Tube_7_1.geometry}
-            material={nodes.Tube_7_1.material}
-            position={[-426.13, -114.09, -759.15]}
-          />
-          <mesh
-            geometry={nodes.Tube_6_1.geometry}
-            material={nodes.Tube_6_1.material}
-            position={[171.32, -115.28, 70.39]}
-          />
-          <mesh
-            geometry={nodes.Tube_5_1.geometry}
-            material={nodes.Tube_5_1.material}
-            position={[171.32, -115.28, 70.39]}
-          />
-          <mesh
-            geometry={nodes.Tube_4_1.geometry}
-            material={nodes.Tube_4_1.material}
-            position={[171.32, 174.91, 70.39]}
-          />
-          <mesh
-            geometry={nodes.Cylinder_1_1.geometry}
-            material={nodes.Cylinder_1_1.material}
-            position={[-426.13, 22.22, -759.15]}
-          />
-          <mesh
-            geometry={nodes.Tube_6_2_1.geometry}
-            material={nodes.Tube_6_2_1.material}
-            position={[-426.13, 174.07, -759.15]}
-          />
-          <mesh
-            geometry={nodes.Tube_2_1.geometry}
-            material={nodes.Tube_2_1.material}
-            position={[171.32, -42.66, 70.39]}
-          />
-          <mesh
-            geometry={nodes.Tube_1_1.geometry}
-            material={nodes.Tube_1_1.material}
-            position={[171.32, 87.75, 70.39]}
-          />
-          <mesh
-            geometry={nodes.Tube_1_2_1.geometry}
-            material={nodes.Tube_1_2_1.material}
-            position={[171.32, 21.61, 70.39]}
-          />
-          <mesh
-            geometry={nodes.Cylinder_2.geometry}
-            material={nodes.Cylinder_2.material}
-            position={[171.32, 22.22, 70.39]}
-          />
-          <mesh
-            geometry={nodes.Tube_3_1.geometry}
-            material={nodes.Tube_3_1.material}
-            position={[171.32, 87.84, 321.67]}
-          />
-          <mesh
-            geometry={nodes.Tube_2_2_1.geometry}
-            material={nodes.Tube_2_2_1.material}
-            position={[171.32, 21.38, 321.67]}
-          />
-          <mesh
-            geometry={nodes.Tube_1_3_1.geometry}
-            material={nodes.Tube_1_3_1.material}
-            position={[171.32, -42.58, 321.67]}
-          />
-          <mesh
-            geometry={nodes.Loft_2_1.geometry}
-            material={nodes.Loft_2_1.material}
-            position={[183.26, -1.34, 615.79]}
-          />
-          <mesh
-            geometry={nodes.Tube_8.geometry}
-            material={nodes.Tube_8.material}
-            position={[-256.85, 180.71, 342.73]}
-          />
-          <mesh
-            geometry={nodes.Tube_2_3_1.geometry}
-            material={nodes.Tube_2_3_1.material}
-            position={[-256.85, -152.74, 342.73]}
-          />
-        </group>
-        <group position={[896.13, -154.92, 30.97]}>
-          <mesh
-            geometry={nodes.Cube13.geometry}
-            material={nodes.Cube13.material}
+            geometry={nodes.Cube13_1.geometry}
+            material={nodes.Cube13_1.material}
             position={[-2313.06, 251.01, 592.73]}
           />
-          <mesh geometry={nodes.Cube2.geometry} material={nodes.Cube2.material} position={[-2319.75, 200, 129.12]} />
+          <mesh
+            geometry={nodes.Cube2_1.geometry}
+            material={nodes.Cube2_1.material}
+            position={[-2319.75, 200, 129.12]}
+          />
         </group>
-        <group position={[-1288.66, 35.54, -228.1]} rotation={[0, -1.57, 0]}>
+        <group position={[-1349.92, -4.64, 98.38]} rotation={[0, -1.57, 0]}>
           <group position={[36.89, -117.64, 0.41]} rotation={[0, -0.01, 0]}>
             <mesh geometry={nodes.Piano.geometry} material={nodes.Piano.material} position={[-39.95, 184.76, 10.51]} />
           </group>
@@ -196,8 +605,8 @@ export default function Model({ ...props }) {
             rotation={[0, -0.01, 0]}
           />
           <mesh
-            geometry={nodes.Cylinder_3.geometry}
-            material={nodes.Cylinder_3.material}
+            geometry={nodes.Cylinder_1.geometry}
+            material={nodes.Cylinder_1.material}
             position={[-1.96, 116.19, 0.16]}
             rotation={[0, -0.01, 0]}
           />
@@ -224,7 +633,7 @@ export default function Model({ ...props }) {
             </mesh>
           </mesh>
         </group>
-        <group position={[-1157.35, 35.54, -228.1]} rotation={[0, -1.57, 0]}>
+        <group position={[-1218.61, -4.64, 98.38]} rotation={[0, -1.57, 0]}>
           <group position={[36.89, -117.64, 0.41]} rotation={[0, -0.01, 0]}>
             <mesh
               geometry={nodes.Piano_1.geometry}
@@ -244,8 +653,8 @@ export default function Model({ ...props }) {
             rotation={[0, -0.01, 0]}
           />
           <mesh
-            geometry={nodes.Cylinder_4.geometry}
-            material={nodes.Cylinder_4.material}
+            geometry={nodes.Cylinder_2.geometry}
+            material={nodes.Cylinder_2.material}
             position={[-1.96, 116.19, 0.16]}
             rotation={[0, -0.01, 0]}
           />
@@ -272,19 +681,23 @@ export default function Model({ ...props }) {
             </mesh>
           </mesh>
         </group>
-        <group position={[896.13, -154.92, 30.97]}>
-          <mesh geometry={nodes.Cube15.geometry} material={nodes.Cube15.material} position={[-1255.52, 251.01, 0]} />
+        <group position={[834.87, -195.1, 357.45]}>
           <mesh
-            geometry={nodes.Cube2_1.geometry}
-            material={nodes.Cube2_1.material}
+            geometry={nodes.Cube15_1.geometry}
+            material={nodes.Cube15_1.material}
+            position={[-1255.52, 251.01, 0]}
+          />
+          <mesh
+            geometry={nodes.Cube2_2.geometry}
+            material={nodes.Cube2_2.material}
             position={[-1257.51, 200, -121.81]}
           />
         </group>
-        <group position={[896.13, -154.92, 30.97]}>
-          <mesh geometry={nodes.Cube2_2.geometry} material={nodes.Cube2_2.material} position={[2975, 251.01, 0]} />
-          <mesh geometry={nodes.Cube11.geometry} material={nodes.Cube11.material} position={[2947.27, 190, 0]} />
+        <group position={[834.87, -195.1, 357.45]}>
+          <mesh geometry={nodes.Cube2_3.geometry} material={nodes.Cube2_3.material} position={[2975, 251.01, 0]} />
+          <mesh geometry={nodes.Cube11_1.geometry} material={nodes.Cube11_1.material} position={[2947.27, 190, 0]} />
         </group>
-        <group position={[-673.71, 2.92, -183.97]} rotation={[-Math.PI / 2, 0, 0]}>
+        <group position={[-734.97, -37.25, 142.51]} rotation={[-Math.PI / 2, 0, 0]}>
           <group position={[-32.1, -24.29, -32.28]}>
             <mesh
               geometry={nodes.ChamferBox03.geometry}
@@ -492,301 +905,475 @@ export default function Model({ ...props }) {
             scale={[1.87, 6.25, 6.25]}
           />
         </group>
-        <group position={[-548.53, 42.53, 188.64]} rotation={[-Math.PI / 2, 0, -3.13]} scale={2.54}>
+        <group position={[-609.79, 2.36, 515.12]} rotation={[-Math.PI / 2, 0, -3.13]} scale={2.54}>
           <mesh
-            geometry={nodes.Bowl.geometry}
-            material={nodes.Bowl.material}
+            geometry={nodes.Bowl_4.geometry}
+            material={nodes.Bowl_4.material}
             position={[0.07, 2.65, -58.66]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[4.51, 2.21, 3.24]}
           />
           <mesh
-            geometry={nodes.Water_Tube.geometry}
-            material={nodes.Water_Tube.material}
+            geometry={nodes.Water_Tube_4.geometry}
+            material={nodes.Water_Tube_4.material}
             position={[-8.74, 37.25, -22.94]}
             rotation={[Math.PI / 2, -1.57, 0]}
           />
           <mesh
-            geometry={nodes.Seat.geometry}
-            material={nodes.Seat.material}
+            geometry={nodes.Seat_4.geometry}
+            material={nodes.Seat_4.material}
             position={[-0.3, 126.96, -57.4]}
             rotation={[0.01, 0, Math.PI / 2]}
             scale={[4.51, 2.21, 3.24]}
           />
           <mesh
-            geometry={nodes.Flush_Button.geometry}
-            material={nodes.Flush_Button.material}
+            geometry={nodes.Flush_Button_4.geometry}
+            material={nodes.Flush_Button_4.material}
             position={[-0.43, 31.3, 32.24]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[1.93, 2.66, 5.02]}
           />
           <mesh
-            geometry={nodes.Tank_cover.geometry}
-            material={nodes.Tank_cover.material}
+            geometry={nodes.Tank_cover_4.geometry}
+            material={nodes.Tank_cover_4.material}
             position={[-0.43, 31.3, 32.24]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[1.93, 2.66, 5.02]}
           />
           <mesh
-            geometry={nodes.Lid.geometry}
-            material={nodes.Lid.material}
+            geometry={nodes.Lid_4.geometry}
+            material={nodes.Lid_4.material}
             position={[-0.35, -85.18, -109.66]}
             rotation={[-1.62, 0, Math.PI / 2]}
             scale={[4.56, 2.23, 5.24]}
           />
           <mesh
-            geometry={nodes.Hinges.geometry}
-            material={nodes.Hinges.material}
+            geometry={nodes.Hinges_4.geometry}
+            material={nodes.Hinges_4.material}
             position={[0.07, 2.65, -58.66]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[4.51, 2.21, 3.24]}
           />
           <mesh
-            geometry={nodes.Tank.geometry}
-            material={nodes.Tank.material}
+            geometry={nodes.Tank_4.geometry}
+            material={nodes.Tank_4.material}
             position={[-0.21, -4.59, -1.73]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[1.88, 2.64, 2.67]}
           />
           <group position={[0.07, 2.65, -58.62]} rotation={[0, 0, Math.PI / 2]} scale={[4.51, 2.21, 3.24]}>
             <mesh
-              geometry={nodes['Drainage_Tube-Plastic_Grey'].geometry}
-              material={nodes['Drainage_Tube-Plastic_Grey'].material}
+              geometry={nodes['Drainage_Tube-Plastic_Grey_4'].geometry}
+              material={nodes['Drainage_Tube-Plastic_Grey_4'].material}
             />
             <mesh
-              geometry={nodes['Drainage_Tube-Ceramic'].geometry}
-              material={nodes['Drainage_Tube-Ceramic'].material}
+              geometry={nodes['Drainage_Tube-Ceramic_4'].geometry}
+              material={nodes['Drainage_Tube-Ceramic_4'].material}
             />
           </group>
           <mesh
-            geometry={nodes.Bolt_Caps.geometry}
-            material={nodes.Bolt_Caps.material}
+            geometry={nodes.Bolt_Caps_4.geometry}
+            material={nodes.Bolt_Caps_4.material}
             position={[0.07, 2.65, -58.62]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[4.51, 2.21, 3.24]}
           />
           <mesh
-            geometry={nodes.Water.geometry}
-            material={nodes.Water.material}
+            geometry={nodes.Water_4.geometry}
+            material={nodes.Water_4.material}
             position={[0.06, -4.89, -36.11]}
             scale={[0.67, 0.67, 0.67]}
           />
           <mesh
-            geometry={nodes.Valve.geometry}
-            material={nodes.Valve.material}
+            geometry={nodes.Valve_4.geometry}
+            material={nodes.Valve_4.material}
             position={[-27.13, -55.85, -38.28]}
             rotation={[-Math.PI / 2, 0, Math.PI / 2]}
             scale={1.43}
           />
         </group>
-        <group position={[-880.33, 42.53, 188.64]} rotation={[-Math.PI / 2, 0, -3.13]} scale={2.54}>
+        <group position={[-941.6, 2.36, 515.12]} rotation={[-Math.PI / 2, 0, -3.13]} scale={2.54}>
           <mesh
-            geometry={nodes.Bowl_1.geometry}
-            material={nodes.Bowl_1.material}
+            geometry={nodes.Bowl_5.geometry}
+            material={nodes.Bowl_5.material}
             position={[0.07, 2.65, -58.66]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[4.51, 2.21, 3.24]}
           />
           <mesh
-            geometry={nodes.Water_Tube_1.geometry}
-            material={nodes.Water_Tube_1.material}
+            geometry={nodes.Water_Tube_5.geometry}
+            material={nodes.Water_Tube_5.material}
             position={[-8.74, 37.25, -22.94]}
             rotation={[Math.PI / 2, -1.57, 0]}
           />
           <mesh
-            geometry={nodes.Seat_1.geometry}
-            material={nodes.Seat_1.material}
+            geometry={nodes.Seat_5.geometry}
+            material={nodes.Seat_5.material}
             position={[-0.3, 126.96, -57.4]}
             rotation={[0.01, 0, Math.PI / 2]}
             scale={[4.51, 2.21, 3.24]}
           />
           <mesh
-            geometry={nodes.Flush_Button_1.geometry}
-            material={nodes.Flush_Button_1.material}
+            geometry={nodes.Flush_Button_5.geometry}
+            material={nodes.Flush_Button_5.material}
             position={[-0.43, 31.3, 32.24]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[1.93, 2.66, 5.02]}
           />
           <mesh
-            geometry={nodes.Tank_cover_1.geometry}
-            material={nodes.Tank_cover_1.material}
+            geometry={nodes.Tank_cover_5.geometry}
+            material={nodes.Tank_cover_5.material}
             position={[-0.43, 31.3, 32.24]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[1.93, 2.66, 5.02]}
           />
           <mesh
-            geometry={nodes.Lid_1.geometry}
-            material={nodes.Lid_1.material}
+            geometry={nodes.Lid_5.geometry}
+            material={nodes.Lid_5.material}
             position={[-0.35, -85.18, -109.66]}
             rotation={[-1.62, 0, Math.PI / 2]}
             scale={[4.56, 2.23, 5.24]}
           />
           <mesh
-            geometry={nodes.Hinges_1.geometry}
-            material={nodes.Hinges_1.material}
+            geometry={nodes.Hinges_5.geometry}
+            material={nodes.Hinges_5.material}
             position={[0.07, 2.65, -58.66]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[4.51, 2.21, 3.24]}
           />
           <mesh
-            geometry={nodes.Tank_1.geometry}
-            material={nodes.Tank_1.material}
+            geometry={nodes.Tank_5.geometry}
+            material={nodes.Tank_5.material}
             position={[-0.21, -4.59, -1.73]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[1.88, 2.64, 2.67]}
           />
           <group position={[0.07, 2.65, -58.62]} rotation={[0, 0, Math.PI / 2]} scale={[4.51, 2.21, 3.24]}>
             <mesh
-              geometry={nodes['Drainage_Tube-Plastic_Grey_1'].geometry}
-              material={nodes['Drainage_Tube-Plastic_Grey_1'].material}
+              geometry={nodes['Drainage_Tube-Plastic_Grey_5'].geometry}
+              material={nodes['Drainage_Tube-Plastic_Grey_5'].material}
             />
             <mesh
-              geometry={nodes['Drainage_Tube-Ceramic_1'].geometry}
-              material={nodes['Drainage_Tube-Ceramic_1'].material}
+              geometry={nodes['Drainage_Tube-Ceramic_5'].geometry}
+              material={nodes['Drainage_Tube-Ceramic_5'].material}
             />
           </group>
           <mesh
-            geometry={nodes.Bolt_Caps_1.geometry}
-            material={nodes.Bolt_Caps_1.material}
+            geometry={nodes.Bolt_Caps_5.geometry}
+            material={nodes.Bolt_Caps_5.material}
             position={[0.07, 2.65, -58.62]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[4.51, 2.21, 3.24]}
           />
           <mesh
-            geometry={nodes.Water_1.geometry}
-            material={nodes.Water_1.material}
+            geometry={nodes.Water_5.geometry}
+            material={nodes.Water_5.material}
             position={[0.06, -4.89, -36.11]}
             scale={[0.67, 0.67, 0.67]}
           />
           <mesh
-            geometry={nodes.Valve_1.geometry}
-            material={nodes.Valve_1.material}
+            geometry={nodes.Valve_5.geometry}
+            material={nodes.Valve_5.material}
             position={[-27.13, -55.85, -38.28]}
             rotation={[-Math.PI / 2, 0, Math.PI / 2]}
             scale={1.43}
           />
         </group>
-        <group position={[-1127.93, 42.53, 169.44]} rotation={[-Math.PI / 2, 0, -1.56]} scale={2.54}>
+        <group position={[-1189.2, 2.36, 495.92]} rotation={[-Math.PI / 2, 0, -1.56]} scale={2.54}>
           <mesh
-            geometry={nodes.Bowl_2.geometry}
-            material={nodes.Bowl_2.material}
+            geometry={nodes.Bowl_6.geometry}
+            material={nodes.Bowl_6.material}
             position={[0.07, 2.65, -58.66]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[4.51, 2.21, 3.24]}
           />
           <mesh
-            geometry={nodes.Water_Tube_2.geometry}
-            material={nodes.Water_Tube_2.material}
+            geometry={nodes.Water_Tube_6.geometry}
+            material={nodes.Water_Tube_6.material}
             position={[-8.74, 37.25, -22.94]}
             rotation={[Math.PI / 2, -1.57, 0]}
           />
           <mesh
-            geometry={nodes.Seat_2.geometry}
-            material={nodes.Seat_2.material}
+            geometry={nodes.Seat_6.geometry}
+            material={nodes.Seat_6.material}
             position={[-0.3, 126.96, -57.4]}
             rotation={[0.01, 0, Math.PI / 2]}
             scale={[4.51, 2.21, 3.24]}
           />
           <mesh
-            geometry={nodes.Flush_Button_2.geometry}
-            material={nodes.Flush_Button_2.material}
+            geometry={nodes.Flush_Button_6.geometry}
+            material={nodes.Flush_Button_6.material}
             position={[-0.43, 31.3, 32.24]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[1.93, 2.66, 5.02]}
           />
           <mesh
-            geometry={nodes.Tank_cover_2.geometry}
-            material={nodes.Tank_cover_2.material}
+            geometry={nodes.Tank_cover_6.geometry}
+            material={nodes.Tank_cover_6.material}
             position={[-0.43, 31.3, 32.24]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[1.93, 2.66, 5.02]}
           />
           <mesh
-            geometry={nodes.Lid_2.geometry}
-            material={nodes.Lid_2.material}
+            geometry={nodes.Lid_6.geometry}
+            material={nodes.Lid_6.material}
             position={[-0.35, -85.18, -109.66]}
             rotation={[-1.62, 0, Math.PI / 2]}
             scale={[4.56, 2.23, 5.24]}
           />
           <mesh
-            geometry={nodes.Hinges_2.geometry}
-            material={nodes.Hinges_2.material}
+            geometry={nodes.Hinges_6.geometry}
+            material={nodes.Hinges_6.material}
             position={[0.07, 2.65, -58.66]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[4.51, 2.21, 3.24]}
           />
           <mesh
-            geometry={nodes.Tank_2.geometry}
-            material={nodes.Tank_2.material}
+            geometry={nodes.Tank_6.geometry}
+            material={nodes.Tank_6.material}
             position={[-0.21, -4.59, -1.73]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[1.88, 2.64, 2.67]}
           />
           <group position={[0.07, 2.65, -58.62]} rotation={[0, 0, Math.PI / 2]} scale={[4.51, 2.21, 3.24]}>
             <mesh
-              geometry={nodes['Drainage_Tube-Plastic_Grey_2'].geometry}
-              material={nodes['Drainage_Tube-Plastic_Grey_2'].material}
+              geometry={nodes['Drainage_Tube-Plastic_Grey_6'].geometry}
+              material={nodes['Drainage_Tube-Plastic_Grey_6'].material}
             />
             <mesh
-              geometry={nodes['Drainage_Tube-Ceramic_2'].geometry}
-              material={nodes['Drainage_Tube-Ceramic_2'].material}
+              geometry={nodes['Drainage_Tube-Ceramic_6'].geometry}
+              material={nodes['Drainage_Tube-Ceramic_6'].material}
             />
           </group>
           <mesh
-            geometry={nodes.Bolt_Caps_2.geometry}
-            material={nodes.Bolt_Caps_2.material}
+            geometry={nodes.Bolt_Caps_6.geometry}
+            material={nodes.Bolt_Caps_6.material}
             position={[0.07, 2.65, -58.62]}
             rotation={[0, 0, Math.PI / 2]}
             scale={[4.51, 2.21, 3.24]}
           />
           <mesh
-            geometry={nodes.Water_2.geometry}
-            material={nodes.Water_2.material}
+            geometry={nodes.Water_6.geometry}
+            material={nodes.Water_6.material}
             position={[0.06, -4.89, -36.11]}
             scale={[0.67, 0.67, 0.67]}
           />
           <mesh
-            geometry={nodes.Valve_2.geometry}
-            material={nodes.Valve_2.material}
+            geometry={nodes.Valve_6.geometry}
+            material={nodes.Valve_6.material}
             position={[-27.13, -55.85, -38.28]}
             rotation={[-Math.PI / 2, 0, Math.PI / 2]}
             scale={1.43}
           />
         </group>
+        <mesh
+          geometry={nodes.Cylinder11.geometry}
+          material={nodes.Cylinder11.material}
+          position={[2646.63, 190.56, -936.65]}
+          rotation={[-Math.PI / 2, 0, 0]}
+        />
+        <mesh
+          geometry={nodes.Cube36.geometry}
+          material={nodes.Cube36.material}
+          position={[2644.39, -3.84, -727.17]}
+          rotation={[Math.PI / 2, 0, 0]}
+        />
+        <mesh
+          geometry={nodes.Cylinder10.geometry}
+          material={nodes.Cylinder10.material}
+          position={[2885.87, 190.56, -936.65]}
+          rotation={[-Math.PI / 2, 0, 0]}
+        />
+        <mesh
+          geometry={nodes.Cube34.geometry}
+          material={nodes.Cube34.material}
+          position={[2883.62, -3.84, -727.17]}
+          rotation={[Math.PI / 2, 0, 0]}
+        />
+        <mesh geometry={nodes.Cube35.geometry} material={nodes.Cube35.material} position={[3127.61, -13.08, -356.51]} />
+        <mesh geometry={nodes.Cube33.geometry} material={nodes.Cube33.material} position={[407.51, 154.28, 1271.13]} />
+        <mesh
+          geometry={nodes.Cube32.geometry}
+          material={nodes.Cube32.material}
+          position={[-811.17, 55.91, 1224.83]}
+          rotation={[0, -1.57, 0]}
+        />
+        <mesh
+          geometry={nodes.Cube31.geometry}
+          material={nodes.Cube31.material}
+          position={[-811.17, 55.91, 942.07]}
+          rotation={[0, -1.57, 0]}
+        />
+        <mesh geometry={nodes.Cube30.geometry} material={nodes.Cube30.material} position={[-267.97, -170.1, 1243.75]} />
+        <mesh
+          geometry={nodes.Cube29.geometry}
+          material={nodes.Cube29.material}
+          position={[-811.17, 55.91, 1508.58]}
+          rotation={[0, -1.57, 0]}
+        />
+        <mesh geometry={nodes.Cube28.geometry} material={nodes.Cube28.material} position={[-965.13, 55.91, 1257.45]} />
+        <mesh
+          geometry={nodes.Cube27.geometry}
+          material={nodes.Cube27.material}
+          position={[1334.87, -84.33, -612.55]}
+          rotation={[Math.PI / 2, Math.PI / 2, 0]}
+        />
+        <mesh
+          geometry={nodes.Cube26.geometry}
+          material={nodes.Cube26.material}
+          position={[-1604.44, 50.81, -496.42]}
+          rotation={[-1.57, 1.17, 0]}
+        />
+        <mesh
+          geometry={nodes.Cube25.geometry}
+          material={nodes.Cube25.material}
+          position={[-1604.44, 50.81, -677.74]}
+          rotation={[-1.57, 1.17, 0]}
+        />
+        <mesh
+          geometry={nodes.Cylinder9.geometry}
+          material={nodes.Cylinder9.material}
+          position={[-1644.43, 50.91, -602.69]}
+        />
+        <mesh
+          geometry={nodes.Cylinder8.geometry}
+          material={nodes.Cylinder8.material}
+          position={[-1650.98, 50.91, -602.69]}
+        />
+        <mesh
+          geometry={nodes.Cylinder7.geometry}
+          material={nodes.Cylinder7.material}
+          position={[-1657.69, 50.91, -602.69]}
+        />
+        <mesh
+          geometry={nodes.Cylinder6.geometry}
+          material={nodes.Cylinder6.material}
+          position={[-1664.93, 50.91, -602.69]}
+        />
+        <mesh
+          geometry={nodes.Cylinder5.geometry}
+          material={nodes.Cylinder5.material}
+          position={[-1644.43, 50.91, -573.5]}
+        />
+        <mesh
+          geometry={nodes.Cylinder4.geometry}
+          material={nodes.Cylinder4.material}
+          position={[-1650.98, 50.91, -573.5]}
+        />
+        <mesh
+          geometry={nodes.Cylinder3.geometry}
+          material={nodes.Cylinder3.material}
+          position={[-1657.69, 50.91, -573.5]}
+        />
+        <mesh
+          geometry={nodes.Cylinder2.geometry}
+          material={nodes.Cylinder2.material}
+          position={[-1664.93, 50.91, -573.5]}
+        />
+        <mesh
+          geometry={nodes.Cube24.geometry}
+          material={nodes.Cube24.material}
+          position={[-1699.25, 47.69, -587.74]}
+          rotation={[-1.57, Math.PI / 2, 0]}
+        />
+        <mesh
+          geometry={nodes.Cube23.geometry}
+          material={nodes.Cube23.material}
+          position={[-1699.25, 47.69, -587.74]}
+          rotation={[-1.57, Math.PI / 2, 0]}
+        />
+        <mesh
+          geometry={nodes.Cube22.geometry}
+          material={nodes.Cube22.material}
+          position={[-1699.25, 47.69, -587.74]}
+          rotation={[-1.57, Math.PI / 2, 0]}
+        />
+        <mesh
+          geometry={nodes.Cylinder1.geometry}
+          material={nodes.Cylinder1.material}
+          position={[-1659.76, 50.91, -679]}
+        />
+        <mesh
+          geometry={nodes.Cylinder.geometry}
+          material={nodes.Cylinder.material}
+          position={[-1659.76, 50.91, -498.91]}
+        />
+        <mesh
+          geometry={nodes.Cube21.geometry}
+          material={nodes.Cube21.material}
+          position={[-1653.09, 41.93, -677.74]}
+          rotation={[-1.57, Math.PI / 2, 0]}
+        />
+        <mesh
+          geometry={nodes.Cube20.geometry}
+          material={nodes.Cube20.material}
+          position={[-1653.09, 41.93, -587.74]}
+          rotation={[-1.57, Math.PI / 2, 0]}
+        />
+        <mesh
+          geometry={nodes.Cube5.geometry}
+          material={nodes.Cube5.material}
+          position={[-1653.09, 41.93, -497.26]}
+          rotation={[-1.57, Math.PI / 2, 0]}
+        />
+        <mesh
+          geometry={nodes.Cube19.geometry}
+          material={nodes.Cube19.material}
+          position={[1976.39, 24.58, -843]}
+          rotation={[-1.57, -1.57, 1.57]}
+        />
+        <mesh
+          geometry={nodes.Cube15.geometry}
+          material={nodes.Cube15.material}
+          position={[1333.34, 24.58, -652.1]}
+          rotation={[-Math.PI, 1.57, 0]}
+        />
+        <mesh
+          geometry={nodes.Cube13.geometry}
+          material={nodes.Cube13.material}
+          position={[2014.87, -64.26, -842.55]}
+          rotation={[Math.PI / 2, 0, -Math.PI / 2]}
+        />
+        <mesh
+          geometry={nodes.Cube11.geometry}
+          material={nodes.Cube11.material}
+          position={[-1653.09, -64.26, -584.27]}
+          rotation={[-1.57, Math.PI / 2, 0]}
+        />
+        <mesh
+          geometry={nodes.Cube2.geometry}
+          material={nodes.Cube2.material}
+          position={[1334.87, -170.1, -842.55]}
+          rotation={[0, 1.57, 0]}
+        />
         <mesh
           geometry={nodes.Cube18.geometry}
           material={nodes.Cube18.material}
-          position={[-1202.5, 96.08, 10.83]}
+          position={[-1263.76, 55.91, 337.32]}
           rotation={[0, 1.57, 0]}
         />
-        <mesh geometry={nodes.Cube17.geometry} material={nodes.Cube17.material} position={[-1004.4, 96.08, 168.26]} />
-        <mesh geometry={nodes.Cube16.geometry} material={nodes.Cube16.material} position={[-726.11, 96.08, 168.26]} />
-        <mesh geometry={nodes.Cube14.geometry} material={nodes.Cube14.material} position={[-2078.87, 96.08, 30.97]} />
-        <mesh geometry={nodes.Cube12.geometry} material={nodes.Cube12.material} position={[-1721.14, -129.92, 30.97]} />
-        <mesh geometry={nodes.Cube10.geometry} material={nodes.Cube10.material} position={[-553.87, -129.92, 30.97]} />
-        <mesh geometry={nodes.Cube9.geometry} material={nodes.Cube9.material} position={[896.13, -139.92, 30.97]} />
-        <mesh geometry={nodes.Cube8.geometry} material={nodes.Cube8.material} position={[2496.13, 96.08, 930.97]} />
-        <mesh geometry={nodes.Cube7.geometry} material={nodes.Cube7.material} position={[2496.13, 96.08, -869.03]} />
-        <mesh
-          geometry={nodes.Cube6.geometry}
-          material={nodes.Cube6.material}
-          position={[896.13, 96.08, 330.97]}
-          rotation={[0, 1.57, 0]}
-        />
+        <mesh geometry={nodes.Cube17.geometry} material={nodes.Cube17.material} position={[-1065.67, 55.91, 494.74]} />
+        <mesh geometry={nodes.Cube16.geometry} material={nodes.Cube16.material} position={[-787.38, 55.91, 494.74]} />
+        <mesh geometry={nodes.Cube14.geometry} material={nodes.Cube14.material} position={[-2140.13, 55.91, 357.45]} />
+        <mesh geometry={nodes.Cube12.geometry} material={nodes.Cube12.material} position={[-1782.4, -170.1, 357.45]} />
+        <mesh geometry={nodes.Cube10.geometry} material={nodes.Cube10.material} position={[-615.13, -170.1, 357.45]} />
+        <mesh geometry={nodes.Cube9.geometry} material={nodes.Cube9.material} position={[834.87, -180.1, 357.45]} />
+        <mesh geometry={nodes.Cube8.geometry} material={nodes.Cube8.material} position={[434.87, 55.91, 1257.45]} />
+        <mesh geometry={nodes.Cube7.geometry} material={nodes.Cube7.material} position={[2434.87, 55.91, -542.55]} />
         <mesh
           geometry={nodes.Cube4.geometry}
           material={nodes.Cube4.material}
-          position={[896.13, 96.08, 1505.97]}
+          position={[834.87, 55.91, 1832.45]}
           rotation={[0, 1.57, 0]}
         />
         <mesh
           geometry={nodes.Cube3.geometry}
           material={nodes.Cube3.material}
-          position={[896.13, 96.08, -1444.03]}
+          position={[834.87, 55.91, -1117.55]}
           rotation={[0, 1.57, 0]}
         />
-        <mesh geometry={nodes.Cube1.geometry} material={nodes.Cube1.material} position={[-2078.87, 96.08, 30.97]} />
-        <mesh geometry={nodes.Cube.geometry} material={nodes.Cube.material} position={[896.13, -154.92, 30.97]} />
+        <mesh geometry={nodes.Cube1.geometry} material={nodes.Cube1.material} position={[-2140.13, 55.91, 357.45]} />
+        <mesh geometry={nodes.Cube.geometry} material={nodes.Cube.material} position={[834.87, -195.1, 357.45]} />
       </group>
     </group>
   )

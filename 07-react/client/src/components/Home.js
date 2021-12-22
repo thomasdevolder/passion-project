@@ -19,12 +19,14 @@ import gsap from 'gsap'
 import homeImg from '../assets/img/home.jpg'
 import hallImg from '../assets/img/hall.jpg'
 import lineUpImg from '../assets/img/lineUp.jpg'
-import dressCodeImg from '../assets/img/dressCode.jpg'
+import dressCodeImg from '../assets/img/playlist.jpg'
 import guestListImg from '../assets/img/guestList.jpg'
 import photographerImg from '../assets/img/darkRoom.jpg'
 import campingImg from '../assets/img/camping.jpg'
 
 const Home = () => {
+    const [songPlaying, setSongPlaying] = useState(false);
+    const [isGoing, setIsGoing] = useState('accept invite'); 
 
     const [menu, showMenu] = useState(false); 
     const [image, changeImage] = useState(homeImg); 
@@ -92,7 +94,7 @@ const Home = () => {
                 height: "100%",
                 ease: "Power3.inOut",
             });
-            gsap.to([line1, line2, line3, line4, line5, line6], {
+            gsap.to([line1, line2, line3, line4, line5], {
                 duration: .8,
                 opacity: 0,
                 marginLeft: "-20rem",
@@ -116,7 +118,7 @@ const Home = () => {
                 height: "100%",
                 ease: "Power3.inOut",
             });
-            gsap.to([line1, line2, line3, line4, line5, line6], {
+            gsap.to([line1, line2, line3, line4, line5], {
                 duration: .8,
                 opacity: 1,
                 marginLeft: 0,
@@ -156,6 +158,10 @@ const Home = () => {
         changeImage(homeImg)
     }
 
+    const scratchMusic = () => {
+        console.log('scratch')
+    }
+
     return(
         <>
             <div ref={el => curtain = el} className={styles.curtain}><p ref={el => loading = el}>LOADING...</p></div>
@@ -174,12 +180,11 @@ const Home = () => {
                         </Link>
                         <div ref={el => {navMiddle = el}} className={styles.navMiddle}>
                             <ul ref={el => {list = el}} className={menu ? styles.navList : styles.noDisplay}>
-                                <li onMouseEnter={(e) => changeHomeImage(e)} onMouseLeave={resetImageDefault} id="camping" ref={el => {line1 = el}} className={styles.navItem}><Link id="camping" to="./camping" className={styles.navItemStyle}>camping</Link></li>
-                                <li onMouseEnter={(e) => changeHomeImage(e)} onMouseLeave={resetImageDefault} id="hall" ref={el => {line2 = el}} className={styles.navItem}><Link id="hall" to="./hall" className={styles.navItemStyle}>zaal</Link></li>
-                                <li onMouseEnter={(e) => changeHomeImage(e)} onMouseLeave={resetImageDefault} id="lineUp" ref={el => {line3 = el}} className={styles.navItem}><Link id="lineUp" to="./lineUp" className={styles.navItemStyle}>line-up</Link></li>
-                                <li onMouseEnter={(e) => changeHomeImage(e)} onMouseLeave={resetImageDefault} id="dressCode" ref={el => {line4 = el}} className={styles.navItem}><Link id="dressCode" to="./dressCode" className={styles.navItemStyle}>dress code</Link></li>
-                                <li onMouseEnter={(e) => changeHomeImage(e)} onMouseLeave={resetImageDefault} id="photographer" ref={el => {line5 = el}} className={styles.navItem}><Link id="photographer" to="./photographer/video" className={styles.navItemStyle}>fotograaf</Link></li>
-                                <li onMouseEnter={(e) => changeHomeImage(e)} onMouseLeave={resetImageDefault} id="guestList" ref={el => {line6 = el}} className={styles.navItem}><Link id="guestList" to="./guestList" className={styles.navItemStyle}>Gasten lijst</Link></li>
+                                <li onMouseEnter={(e) => changeHomeImage(e)} onMouseLeave={resetImageDefault} id="hall" ref={el => {line1 = el}} className={styles.navItem}><Link id="hall" to="./hall" className={styles.navItemStyle}>zaal</Link></li>
+                                <li onMouseEnter={(e) => changeHomeImage(e)} onMouseLeave={resetImageDefault} id="lineUp" ref={el => {line2 = el}} className={styles.navItem}><Link id="lineUp" to="./lineUp" className={styles.navItemStyle}>line-up</Link></li>
+                                <li onMouseEnter={(e) => changeHomeImage(e)} onMouseLeave={resetImageDefault} id="photographer" ref={el => {line3 = el}} className={styles.navItem}><Link id="photographer" to="./photographer/video" className={styles.navItemStyle}>fotograaf</Link></li>
+                                <li onMouseEnter={(e) => changeHomeImage(e)} onMouseLeave={resetImageDefault} id="guestList" ref={el => {line4 = el}} className={styles.navItem}><Link id="guestList" to="./guestList" className={styles.navItemStyle}>Gasten lijst</Link></li>
+                                 <li onMouseEnter={(e) => changeHomeImage(e)} onMouseLeave={resetImageDefault} id="dressCode" ref={el => {line5 = el}} className={styles.navItem}><a id="dressCode" href="https://open.spotify.com/playlist/4sg7S0axYAgwKY4EtZXg1T?si=d34cd0c5d58147bb" target="_blank" className={styles.navItemStyle}>playlist <svg className={styles.arrow} xmlns="http://www.w3.org/2000/svg" width="67.117" height="67.117" viewBox="0 0 67.117 67.117"><g transform="translate(2.121 3)"><path d="M11733.266,401h62v63.673" transform="translate(-11733.266 -401)" fill="none" stroke="#fff" stroke-width="4"/><path d="M11800.715,401l-62,62" transform="translate(-11738.719 -401)" fill="none" stroke="#fff" stroke-width="4"/></g></svg></a></li>
                             </ul>
                             <svg ref={el => {hamburger = el}} onClick={showMenuBar} className={styles.menuIcon} xmlns="http://www.w3.org/2000/svg" width="28.098" height="54.382" viewBox="0 0 28.098 54.382">
                                 <g id="Group_7" data-name="Group 7" transform="translate(-68.273 -504.203)">
@@ -188,18 +193,18 @@ const Home = () => {
                                 </g>
                             </svg>
                         </div>
-                        <BackgroundMusic ref={el => {sound = el}}/>
+                        <BackgroundMusic songPlaying={songPlaying} setSongPlaying={(e) => {setSongPlaying(e)}} ref={el => {sound = el}}/>
                     </div>
                     <div className={styles.organize}>
                         <a className={styles.organisation} target="_blank" href="https://www.voldercompany.be">A VOLDER EVENT</a>
-                        <p className={styles.accept}>Accept<br/>Invite</p>
+                        <p onClick={() => setIsGoing("you're going")} className={styles.accept}>{isGoing}</p>
                     </div>
                 
                 <Routes>
                 <Route path="/start" element={<Start homeImage={image}/>} />
                 <Route path="/camping" element={<Camping/>} />
                 <Route path="/hall" element={<Hall/>} />
-                <Route path="/lineUp" element={<LineUp/>} />
+                <Route path="/lineUp" element={<LineUp scratch={scratchMusic} needleOn={songPlaying} setNeedleOn={(e) => setSongPlaying(e)}/>} />
                 <Route path="/dressCode" element={<DressCode/>} />
                 <Route path="/photographer/*" element={<Photographer/>} />
                 <Route path="/guestList" element={<GuestList/>} />

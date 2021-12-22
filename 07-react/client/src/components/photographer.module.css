@@ -23,14 +23,30 @@ body {
     align-items: center;
 }
 
-.switch {
+.video {
     display: flex;
     flex-flow: row;
+    justify-content: center;
     font-size: 2.6rem;
     text-transform: uppercase;
     margin-right: 1rem;
     font-weight: 100;
     align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.photo {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    font-size: 2.6rem;
+    text-transform: uppercase;
+    margin-right: 1rem;
+    font-weight: 100;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
 }
 
 .switchMiddle {
@@ -99,4 +115,24 @@ body {
     align-items: center;
     justify-content: center;
     margin-left: 5vw;
+}
+
+.video::after {
+    position: absolute;
+    top: 5.5rem;
+    left: -0.5%;
+    width: 45%; 
+    height: .1rem; 
+    content: '';
+    background: white;
+}
+
+.photo::after {
+    position: absolute;
+    top: 5.5rem;
+    left: 55%;
+    width: 45%; 
+    height: .1rem; 
+    content: '';
+    background: white;
 }

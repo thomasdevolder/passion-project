@@ -82,6 +82,7 @@
     border-radius: 50%;
     transition: all .3s ease-in;
     cursor: pointer;
+    width: 6rem;
 }
 
 .accept:hover {
@@ -117,6 +118,9 @@
     font-family:  Helvetica, sans-serif; 
     font-weight: 300;
     text-transform: uppercase;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
 }
 
 .navItemStyle:hover {
@@ -139,5 +143,9 @@
     color: #0D0D0D; 
     z-index: 19;
     display: none;
+}
+
+.arrow {
+    transform: scale(.9)
 }
 
